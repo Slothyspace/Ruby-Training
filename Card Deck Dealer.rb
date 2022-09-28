@@ -1,63 +1,56 @@
 module Card_Deck_Dealer
 
- class Card
-   attr_reader :suit, :value
+ class Card_deck
+   attr_reader :cards
    def initialize
-    @suit = " "
-    @value = 0
-   end
-  def show
-    #card suits will be represented with strings and values with intergers
-    #method replaces value if applicable with more readable version
-   case @value
-   when 1
-   value = "Ace"
-   when 11
-   value = "Jack"
-   when 12
-   value = "Queen"
-   when 13
-   value = "King"
-   end
-   return "#{value} of #{@suit}"
-  end
- end
-
- super Deck < Card
-  attr_accessor :cards_in_deck
-  def initialize
-    @cards_in_deck = []
-  end
-  def amount_in_deck
-    return @cards_in_deck.length()
-  end
-  def draw
-    #method to show card in deck at random but not remove it
-    choice = @cards_in_deck[rand]
-    choice = choice.show
-    puts "#{choice}"
-  end
-  def remove
-    #method to remove a card from deck without showing it
-  end
- end
-  
-#test this method to make sure classes and loops are organized correctly
-def build_deck
-  $deck = Deck.new
-  count = $deck.amount_in_deck
-  #comment out loops until correct format is figured out
-  #until count = 54
+    @card_library = Hash.new
+    @deck = []
     suit = "Spades"
     value = 1
-    ace_of_spades = Card.new(suit, value)
-    $deck.@cards_in_deck.push(ace_of_spades)
-    count = $deck.amount_in_deck
-    puts count
-    puts $deck.@cards_in_deck[0]
+    y = 1
+    #loop to create cards inside a hash
+    while suit != nil
+      card = Hash[:"#{suit}"=>"#{value}"]
+      @card_library = @card_library.merge(card)
       
-  #end
+      y += 1
+      value += 1
+     if y = 14 
+      suit = "Clubs"
+      value = 1
+     end
+     if y = 27
+      suit = "Hearts"
+      value = 1
+     end
+     if y = 40
+      suit = "Diamonds"
+      value = 1
+     end
+     if y = 50
+      suit = Joker
+      value = 1
+     end
+     if y = 53
+      suit = nil
+     end
+    end
+   end
+   #method to grab random card from hash without revealing it
+   def draw
+    return @deck[rand]
+   end
+   #method to draw a random card and show it
+   def show
+    
+   end
+   
   end
+
+
+ 
+  
+
   
 end
 
